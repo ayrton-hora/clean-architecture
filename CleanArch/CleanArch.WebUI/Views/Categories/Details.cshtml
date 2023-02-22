@@ -1,0 +1,31 @@
+﻿@model CleanArch.Application.DTOs.CategoryDTO
+
+@{
+    ViewData["Title"] = "Category Details";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<hr />
+
+<form asp-action="Details">
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label class="col-md-2 control-label">Category @Html.DisplayNameFor(model => model.Name):</label>
+
+            <div class="col-sm-10">
+                <strong>@Html.DisplayFor(model => model.Name)</strong>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary text-white">Edit</a>
+
+                <a asp-action="Index" class="btn btn-info text-white">Back to List</a>
+            </div>
+        </div>
+    </div>
+</form>

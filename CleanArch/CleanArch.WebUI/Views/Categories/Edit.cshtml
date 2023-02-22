@@ -1,0 +1,35 @@
+﻿@model CleanArch.Application.DTOs.CategoryDTO
+
+@{
+    ViewData["Title"] = "Edit Category";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<hr />
+
+<form asp-action="Edit" method="post">
+    <div class="form-horizontal">
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="Name" class="col-md-2 control-label"></label>
+
+            <div class="col-md-10">
+                <input asp-for="Name" class="form-control" />
+
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-primary"/>
+
+                <a asp-action="Index" class="btn btn-info text-white">Back to List</a>
+            </div>
+        </div>
+    </div>
+</form>
