@@ -1,7 +1,8 @@
-﻿using CleanArch.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+
+using CleanArch.Domain.Entities;
 using CleanArch.Domain.Interfaces;
 using CleanArch.Infra.Data.Context;
-using Microsoft.EntityFrameworkCore;
 
 namespace CleanArch.Infra.Data.Repositories
 {
@@ -27,15 +28,6 @@ namespace CleanArch.Infra.Data.Repositories
         {
             _categoryContext.Remove(category);
             
-            await _categoryContext.SaveChangesAsync();
-        }
-
-        public async Task DeleteAsync(int? id)
-        {
-            Category? category = await _categoryContext.Categories.FindAsync(id);
-
-            _categoryContext.Remove(category);
-
             await _categoryContext.SaveChangesAsync();
         }
 

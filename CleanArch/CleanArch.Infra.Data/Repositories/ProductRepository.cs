@@ -31,24 +31,17 @@ namespace CleanArch.Infra.Data.Repositories
             await _productContext.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int? id)
-        {
-            Product? product = await _productContext.Products.FindAsync(id);
-
-            _productContext.Remove(product);
-
-            await _productContext.SaveChangesAsync();
-        }
-
-        public async Task<Product> GetProductByCategoryAsync(int? categoryId)
-        {
-            return await _productContext.Products.Include(p => p.Category)
-                .SingleOrDefaultAsync(p => p.Id == categoryId);
-        }
+        //public async Task<Product> GetProductByCategoryAsync(int? categoryId)
+        //{
+        //    return await _productContext.Products.Include(p => p.Category)
+        //        .SingleOrDefaultAsync(p => p.Id == categoryId);
+        //}
 
         public async Task<Product> GetByIdAsync(int? id)
         {
-            return await _productContext.Products.FindAsync(id);
+            // return await _productContext.Products.FindAsync(id);
+            return await _productContext.Products.Include(p => p.Category)
+                .SingleOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task<IEnumerable<Product>> GetProductsAsync()
