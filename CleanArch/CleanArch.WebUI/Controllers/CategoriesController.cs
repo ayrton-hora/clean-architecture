@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-using CleanArch.Application.Interfaces;
 using CleanArch.Application.DTOs;
+using CleanArch.Application.Interfaces;
 
 namespace CleanArch.WebUI.Controllers
 {
@@ -14,6 +14,7 @@ namespace CleanArch.WebUI.Controllers
             _categoryService = categoryService;
         }
 
+        #region Get
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -21,6 +22,7 @@ namespace CleanArch.WebUI.Controllers
 
             return View(categories);
         }
+        #endregion
 
         #region Create
         [HttpGet]
