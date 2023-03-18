@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 using CleanArch.Application.DTOs;
@@ -89,6 +90,7 @@ namespace CleanArch.WebUI.Controllers
         #endregion
 
         #region Delete
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {

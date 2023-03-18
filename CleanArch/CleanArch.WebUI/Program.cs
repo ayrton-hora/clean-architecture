@@ -1,3 +1,5 @@
+using CleanArch.Domain.Account;
+using CleanArch.Infra.Data.Identity;
 using CleanArch.Infra.IoC;
 
 namespace CleanArch.WebUI
@@ -11,9 +13,10 @@ namespace CleanArch.WebUI
             builder.Services.AddControllersWithViews();
             builder.Services.AddInfrastructure();
 
+            ISeedUserRoleInitial? seeder = builder.Services.BuildServiceProvider().GetService<ISeedUserRoleInitial>();
+
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
@@ -26,7 +29,12 @@ namespace CleanArch.WebUI
 
             app.UseStaticFiles();
 
+            seeder.SeedUsersAsync();
+            seeder.SeedRolesAsync();
+
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

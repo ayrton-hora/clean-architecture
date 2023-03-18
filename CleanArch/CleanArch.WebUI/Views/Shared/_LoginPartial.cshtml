@@ -1,0 +1,23 @@
+﻿@if (Context.User.Identity.IsAuthenticated)
+{
+    <div>
+        <li class="nav-item">
+            <p class="nav-link text-capitalize" asp-area=""
+               style="color: black">Bem vindo, @Context.User.Identity.Name</p>
+        </li>
+    </div>
+
+    <div>
+        <li class="nav-item">
+            <a class="nav-link text-capitalize" asp-area="" asp-controller="Account" asp-action="Logout"
+               style="color: blue">Logout</a>
+        </li>
+    </div>
+}
+else
+{
+    <li class="nav-item">
+        <a class="nav-link text-capitalize" asp-area="" asp-controller="Account" asp-action="Login"
+           style="color: blue">Login</a>
+    </li>
+}
