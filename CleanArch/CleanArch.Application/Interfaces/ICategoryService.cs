@@ -8,7 +8,7 @@ namespace CleanArch.Application.Interfaces
 
         Task<CategoryDTO> GetByIdAsync(int? id);
 
-        Task AddAsync(CategoryDTO categoryDTO);
+        Task<CategoryDTO> AddAsync(CategoryDTO categoryDTO);
 
         Task UpdateAsync(CategoryDTO categoryDTO);
 

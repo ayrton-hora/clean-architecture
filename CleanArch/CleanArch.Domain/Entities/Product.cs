@@ -24,6 +24,8 @@ namespace CleanArch.Domain.Entities
             DomainExceptionValidation.When(id < 0,
                 "Invalid Id value");
 
+            Id = id;
+
             ValidateDomain(name, description, price, stock, image);
         }
 

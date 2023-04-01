@@ -20,13 +20,15 @@ namespace CleanArch.Application.Services
             _mediator = mediator;
         }
 
-        public async Task AddAsync(ProductDTO productDTO)
+        public async Task<ProductDTO> AddAsync(ProductDTO productDTO)
         {
             ProductCreateCommand command = new();
 
             var mappedEntity = _mapper.Map<ProductCreateCommand>(productDTO);
 
-            await _mediator.Send(mappedEntity);
+            Product response = await _mediator.Send(mappedEntity);
+
+            return _mapper.Map<ProductDTO>(response);
         }
 
         public async Task DeleteAsync(int? id)

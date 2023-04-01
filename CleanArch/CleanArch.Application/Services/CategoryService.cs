@@ -19,11 +19,11 @@ namespace CleanArch.Application.Services
             _mapper = mapper;
         }
 
-        public async Task AddAsync(CategoryDTO categoryDTO)
+        public async Task<CategoryDTO> AddAsync(CategoryDTO categoryDTO)
         {
             var categoryEntity = _mapper.Map<Category>(categoryDTO);
 
-            await _categoryRepository.CreateAsync(categoryEntity);
+            return _mapper.Map<CategoryDTO>(await _categoryRepository.CreateAsync(categoryEntity));
         }
 
         public async Task<CategoryDTO> GetByIdAsync(int? id)

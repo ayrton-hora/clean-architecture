@@ -1,5 +1,4 @@
 using CleanArch.Domain.Account;
-using CleanArch.Infra.Data.Identity;
 using CleanArch.Infra.IoC;
 
 namespace CleanArch.WebUI
