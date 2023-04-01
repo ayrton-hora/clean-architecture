@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 using CleanArch.Application.DTOs;
 using CleanArch.Application.Interfaces;
@@ -7,6 +8,7 @@ namespace CleanArchMvc.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CategoriesController : ControllerBase
     {
         private readonly ICategoryService _categoryService;
@@ -16,7 +18,6 @@ namespace CleanArchMvc.API.Controllers
             _categoryService = categoryService;
         }
 
-        // GET: api/<CategoriesController>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CategoryDTO>>> Get()
         {
@@ -27,7 +28,6 @@ namespace CleanArchMvc.API.Controllers
             return Ok(categories);
         }
 
-        // GET api/<CategoriesController>/5
         [HttpGet("{id:int}", Name = "GetCategoryById")]
         public async Task<ActionResult<CategoryDTO>> Get(int id)
         {
@@ -38,7 +38,6 @@ namespace CleanArchMvc.API.Controllers
             return Ok(category);
         }
 
-        // POST api/<CategoriesController>
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] CategoryDTO categoryDTO)
         {
@@ -49,7 +48,6 @@ namespace CleanArchMvc.API.Controllers
             return Created($"~/api/GetCategoryById/{newCategory.Id}", newCategory);
         }
 
-        // PUT api/<CategoriesController>/5
         [HttpPut]
         public async Task<ActionResult> Put([FromBody] CategoryDTO categoryDTO)
         {
@@ -60,7 +58,6 @@ namespace CleanArchMvc.API.Controllers
             return Ok("Category updated with success");
         }
 
-        // DELETE api/<CategoriesController>/5
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {

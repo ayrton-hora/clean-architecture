@@ -8,11 +8,13 @@ namespace CleanArchMvc.API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-
             builder.Services.AddControllers();
+            
             builder.Services.AddInfrastructureAPI();
+            builder.Services.AddInfraestructureJWT();
+            builder.Services.AddInfraestructureSwagger();
+
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
 
@@ -23,11 +25,11 @@ namespace CleanArchMvc.API
             }
 
             app.UseHttpsRedirection();
-
+            app.UseStatusCodePages();
+            app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
-
             app.MapControllers();
-
             app.Run();
         }
     }
